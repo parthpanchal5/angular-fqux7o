@@ -9,11 +9,12 @@ import { CartService } from '../cart.service';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent {
+  items = this.cartService.getItems();
+
   checkoutForm = this.formBuilder.group({
     name: '',
     address: '',
   });
-  items = this.cartService.getItems();
 
   constructor(
     private cartService: CartService,
@@ -22,7 +23,7 @@ export class CartComponent {
 
   onSubmit(): void {
     this.items = this.cartService.clearCart();
-    console.log('Your order has been submitted', this.checkoutForm.value);
+    alert(this.checkoutForm.value);
     this.checkoutForm.reset();
   }
   removeItem() {
